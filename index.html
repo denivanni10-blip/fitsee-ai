@@ -6,6 +6,41 @@
   <title>FitSee AI | Virtual Try-On Platform</title>
   <meta name="description" content="Plataforma premium de provador virtual para testar roupas no seu corpo antes de comprar online." />
   <style>
+    .tryon-section{
+padding:60px 20px;
+text-align:center;
+background:#0b1220;
+color:white;
+}
+
+.tryon-container{
+display:flex;
+gap:30px;
+justify-content:center;
+margin:30px 0;
+flex-wrap:wrap;
+}
+
+.upload-box{
+background:#111a2e;
+padding:20px;
+border-radius:12px;
+}
+
+.preview{
+width:220px;
+margin-top:10px;
+border-radius:10px;
+}
+
+.result-box{
+margin-top:40px;
+}
+
+#resultImage{
+max-width:300px;
+border-radius:12px;
+}
     :root{
       --bg:#06070b;
       --bg-soft:#0b0e14;
@@ -1851,6 +1886,59 @@ form.addEventListener("submit", async function(e) {
       <p>Obrigado por testar o FitSee AI.</p>
     `;
   }
+});
+</script>
+<!-- DEMO PROVADOR VIRTUAL -->
+<section class="tryon-section">
+  <h2>Testar Provador Virtual</h2>
+  <p>Envie uma foto sua e a roupa que deseja experimentar.</p>
+
+  <div class="tryon-container">
+
+    <div class="upload-box">
+      <label>Foto da Pessoa</label>
+      <input type="file" id="personUpload" accept="image/*">
+      <img id="personPreview" class="preview"/>
+    </div>
+
+    <div class="upload-box">
+      <label>Foto da Roupa</label>
+      <input type="file" id="clothUpload" accept="image/*">
+      <img id="clothPreview" class="preview"/>
+    </div>
+
+  </div>
+
+  <button id="generateTryOn">Gerar Provador Virtual</button>
+
+  <div class="result-box">
+    <h3>Resultado</h3>
+    <img id="resultImage"/>
+  </div>
+</section>
+<script>
+const personUpload = document.getElementById("personUpload");
+const clothUpload = document.getElementById("clothUpload");
+
+const personPreview = document.getElementById("personPreview");
+const clothPreview = document.getElementById("clothPreview");
+
+personUpload.addEventListener("change", function(){
+  const file = this.files[0];
+  if (file) {
+    personPreview.src = URL.createObjectURL(file);
+  }
+});
+
+clothUpload.addEventListener("change", function(){
+  const file = this.files[0];
+  if (file) {
+    clothPreview.src = URL.createObjectURL(file);
+  }
+});
+
+document.getElementById("generateTryOn").addEventListener("click", function(){
+  alert("Em breve: IA gerando provador virtual");
 });
 </script>
 </body>
