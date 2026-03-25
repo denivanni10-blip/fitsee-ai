@@ -1675,7 +1675,14 @@
       };
       reader.readAsDataURL(file);
     }
-
+document.querySelectorAll('.uploader input[data-preview-box]').forEach(input => {
+  input.addEventListener('change', (event) => {
+    const targetId = input.dataset.previewBox;
+    if(targetId){
+      previewImage(event, targetId);
+    }
+  });
+});
     function fillDemo(){
       document.getElementById('productLink').value = 'https://shopee.com.br/produto-demo-premium';
       document.getElementById('productTitle').value = 'Vestido casual premium preto';
@@ -1815,7 +1822,91 @@
         toast.style.display = 'none';
       }, 3200);
     }
+const personUpload = document.getElementById('personUpload');
+const clothUpload = document.getElementById('clothUpload');
+const personPreview = document.getElementById('personPreview');
+const clothPreview = document.getElementById('clothPreview');
+const generateTryOn = document.getElementById('generateTryOn');
+const tryonStatus = document.getElementById('tryonStatus');
+const resultImage = document.getElementById('resultImage');
 
+let personImageBase64 = '';
+let garmentImageBase64 = '';
+
+if(personUpload){
+  personUpload.addEventListener('change', function(event){
+    const file = event.target.files[0];
+    if(!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function(e){
+      personImageBase64 = e.target.result;
+      personPreview.src = personImageBase64;
+      personPreview.style.display = 'block';
+      tryonStatus.textContent = 'Foto da pessoa carregada.';
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+if(clothUpload){
+  clothUpload.addEventListener('change', function(event){
+    const file = event.target.files[0];
+    if(!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function(e){
+      garmentImageBase64 = e.target.result;
+      clothPreview.src = garmentImageBase64;
+      clothPreview.style.display = 'block';
+      tryonStatus.textContent = 'Foto da roupa carregada.';
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+if(generateTryOn){
+  generateTryOn.addEventListener('click', async function(){
+    if(!personImageBase64 || !garmentImageBase64){
+      tryonStatus.textContent = 'Envie a foto da pessoa e a foto da roupa antes de gerar.';
+      return;
+    }
+
+    tryonStatus.textContent = 'Gerando provador virtual...';
+    generateTryOn.disabled = true;
+
+    try{
+      const response = await fetch('/api/tryon', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          personImage: personImageBase64,
+          garmentImage: garmentImageBase64
+        })
+      });
+
+      const data = await response.json();
+
+      if(data.output){
+        const finalImage = Array.isArray(data.output) ? data.output[0] : data.output;
+        resultImage.src = finalImage;
+        resultImage.style.display = 'block';
+        tryonStatus.textContent = 'Resultado gerado com sucesso.';
+      } else if(data.error){
+        tryonStatus.textContent = 'Erro: ' + data.error;
+      } else {
+        tryonStatus.textContent = 'A IA respondeu, mas não retornou imagem.';
+      }
+    } catch(error){
+      tryonStatus.textContent = 'Erro ao chamar /api/tryon.';
+      console.error(error);
+    } finally {
+      generateTryOn.disabled = false;
+    }
+  });
+}
     window.addEventListener('click', function(e){
       const overlay = document.getElementById('modalOverlay');
       if(e.target === overlay) closeModal();
