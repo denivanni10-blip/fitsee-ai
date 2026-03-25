@@ -23,25 +23,38 @@ export default async function handler(req, res) {
       })
     });
 
-    const prediction = await createPrediction.json();
+const prediction = await createPrediction.json();
 
-    let result = prediction;
+if (!createPrediction.ok) {
+  return res.status(500).json({
+    error: "Erro na chamada da Replicate",
+    details: prediction.detail || prediction.error || JSON.stringify(prediction)
+  });
+}
 
-    while (
-      result.status !== "succeeded" &&
-      result.status !== "failed"
-    ) {
+if (!prediction.urls || !prediction.urls.get) {
+  return res.status(500).json({
+    error: "Resposta inesperada da Replicate",
+    details: prediction.detail || prediction.error || JSON.stringify(prediction)
+  });
+}
 
-      await new Promise(r => setTimeout(r, 2000));
+let result = prediction;
 
-      const poll = await fetch(result.urls.get, {
-        headers: {
-          "Authorization": `Token ${process.env.REPLICATE_API_TOKEN}`
-        }
-      });
+while (
+  result.status !== "succeeded" &&
+  result.status !== "failed"
+) {
+  await new Promise(r => setTimeout(r, 2000));
 
-      result = await poll.json();
+  const poll = await fetch(result.urls.get, {
+    headers: {
+      "Authorization": `Token ${process.env.REPLICATE_API_TOKEN}`
     }
+  });
+
+  result = await poll.json();
+}
 
     if (result.status === "succeeded") {
       return res.status(200).json({
@@ -49,16 +62,7 @@ export default async function handler(req, res) {
       });
     }
 
-    return res.status(500).json({
-      error: "Falha na geração da imagem"
-    });
-
-  } catch (error) {
-
-    return res.status(500).json({
-      error: "Erro interno",
-      details: String(error)
-    });
-
-  }
-}
+      return res.status(500).json({
+  error: "Erro interno",
+  details: error?.message || String(error)
+});
