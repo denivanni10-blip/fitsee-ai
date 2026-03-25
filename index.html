@@ -25,17 +25,13 @@
       --accent:#26e6a6;
       --danger:#ff7b7b;
       --shadow:0 18px 60px rgba(0,0,0,.42);
-      --radius-xl:28px;
-      --radius-lg:22px;
-      --radius-md:16px;
-      --radius-sm:12px;
       --max:1240px;
     }
 
     *{margin:0;padding:0;box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
-      font-family: Inter, Arial, Helvetica, sans-serif;
+      font-family:Inter,Arial,Helvetica,sans-serif;
       color:var(--text);
       background:
         radial-gradient(circle at top left, rgba(124,140,255,.18), transparent 26%),
@@ -87,11 +83,6 @@
       background:linear-gradient(135deg, #22e7a5, #85ffd3);
       color:#04130d;
       box-shadow:0 14px 30px rgba(38,230,166,.16);
-    }
-    .btn-dark{
-      background:#0b1018;
-      color:#fff;
-      border:1px solid rgba(255,255,255,.1);
     }
 
     .pill{
@@ -160,9 +151,7 @@
     }
     .nav-links a:hover{color:#fff}
 
-    .hero{
-      padding:84px 0 42px;
-    }
+    .hero{padding:84px 0 42px}
 
     .hero-grid{
       display:grid;
@@ -218,8 +207,7 @@
 
     .hero-card{
       border-radius:32px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
       border:1px solid rgba(255,255,255,.1);
       box-shadow:var(--shadow);
       padding:18px;
@@ -294,9 +282,7 @@
       border:1px solid rgba(255,255,255,.09);
     }
 
-    .social-proof{
-      padding:18px 0 64px;
-    }
+    .social-proof{padding:18px 0 64px}
 
     .proof-wrap{
       border-radius:24px;
@@ -387,13 +373,9 @@
       margin-bottom:8px;
       letter-spacing:-.4px;
     }
-    .card p{
-      color:var(--muted);
-    }
+    .card p{color:var(--muted)}
 
-    .feature{
-      min-height:150px;
-    }
+    .feature{min-height:150px}
     .feature .icon{
       font-size:26px;
       margin-bottom:10px;
@@ -449,9 +431,7 @@
       font-weight:700;
     }
 
-    .content{
-      padding:22px;
-    }
+    .content{padding:22px}
 
     .stats{
       display:grid;
@@ -542,7 +522,7 @@
 
     .uploader{
       position:relative;
-      min-height:126px;
+      min-height:180px;
       border-radius:18px;
       border:1px dashed rgba(255,255,255,.15);
       background:#0a0f16;
@@ -554,6 +534,9 @@
       padding:16px;
       overflow:hidden;
       cursor:pointer;
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
     }
 
     .uploader input{
@@ -561,11 +544,18 @@
       inset:0;
       opacity:0;
       cursor:pointer;
+      z-index:2;
+    }
+
+    .uploader span{
+      position:relative;
+      z-index:1;
+      background:rgba(0,0,0,.35);
+      padding:8px 12px;
+      border-radius:999px;
     }
 
     .uploader.preview{
-      background-size:cover;
-      background-position:center;
       border-style:solid;
     }
 
@@ -839,13 +829,12 @@
       color:#fff;
       display:none;
       z-index:120;
+      pointer-events:none;
     }
     .toast strong{display:block;margin-bottom:4px}
     .toast p{color:var(--muted);font-size:14px}
 
-    .tryon-section{
-      padding:78px 0;
-    }
+    .tryon-section{padding:78px 0}
 
     .tryon-wrap{
       border-radius:30px;
@@ -893,6 +882,8 @@
       display:none;
     }
 
+    .preview.show{display:block}
+
     .result-box{
       margin-top:24px;
       background:#0a0f16;
@@ -919,7 +910,7 @@
 
     .mobile-only{display:none}
 
-    @media (max-width: 1100px){
+    @media (max-width:1100px){
       .hero-grid,
       .dashboard-main,
       .grid-4,
@@ -931,25 +922,18 @@
         grid-template-columns:1fr;
       }
 
-      .dashboard-grid{
-        grid-template-columns:1fr;
-      }
+      .dashboard-grid{grid-template-columns:1fr}
 
       .sidebar{
         border-right:none;
         border-bottom:1px solid rgba(255,255,255,.08);
       }
 
-      .stats{
-        grid-template-columns:repeat(2,1fr);
-      }
-
-      .hero-card{
-        margin-top:8px;
-      }
+      .stats{grid-template-columns:repeat(2,1fr)}
+      .hero-card{margin-top:8px}
     }
 
-    @media (max-width: 760px){
+    @media (max-width:760px){
       .container{width:min(var(--max), calc(100% - 24px))}
       .hero{padding:58px 0 34px}
       .hero-copy h1{font-size:42px;letter-spacing:-1px}
@@ -962,9 +946,7 @@
       .stats{
         grid-template-columns:1fr;
       }
-      .nav{
-        padding:10px 0;
-      }
+      .nav{padding:10px 0}
       .nav-links{
         width:100%;
         justify-content:flex-start;
@@ -993,9 +975,9 @@
         <a href="#pricing">Planos</a>
         <a href="#faq">FAQ</a>
 
-        <button class="btn btn-secondary desktop-only" onclick="openModal('login')">Entrar</button>
-        <button class="btn btn-primary desktop-only" onclick="openModal('register')">Testar MVP</button>
-        <button class="btn btn-secondary mobile-only" onclick="openModal('login')">Entrar</button>
+        <button class="btn btn-secondary desktop-only" type="button" onclick="openModal('login')">Entrar</button>
+        <button class="btn btn-primary desktop-only" type="button" onclick="openModal('register')">Testar MVP</button>
+        <button class="btn btn-secondary mobile-only" type="button" onclick="openModal('login')">Entrar</button>
       </nav>
     </div>
   </header>
@@ -1012,9 +994,9 @@
           </p>
 
           <div class="hero-actions">
-            <button class="btn btn-primary" onclick="scrollToId('dashboard')">Criar meu avatar</button>
-            <button class="btn btn-secondary" onclick="scrollToId('how')">Ver demonstração</button>
-            <button class="btn btn-accent" onclick="openModal('register')">Solicitar acesso beta</button>
+            <button class="btn btn-primary" type="button" onclick="scrollToId('dashboard')">Criar meu avatar</button>
+            <button class="btn btn-secondary" type="button" onclick="scrollToId('how')">Ver demonstração</button>
+            <button class="btn btn-accent" type="button" onclick="openModal('register')">Solicitar acesso beta</button>
           </div>
 
           <div class="hero-tags">
@@ -1210,12 +1192,12 @@
               </div>
 
               <div class="menu" id="sidebarMenu">
-                <button class="active" data-tab="overview">Visão geral</button>
-                <button data-tab="body">Meu perfil corporal</button>
-                <button data-tab="simulate">Nova simulação</button>
-                <button data-tab="history">Histórico</button>
-                <button data-tab="affiliate">Afiliados</button>
-                <button data-tab="settings">Configurações</button>
+                <button class="active" data-tab="overview" type="button">Visão geral</button>
+                <button data-tab="body" type="button">Meu perfil corporal</button>
+                <button data-tab="simulate" type="button">Nova simulação</button>
+                <button data-tab="history" type="button">Histórico</button>
+                <button data-tab="affiliate" type="button">Afiliados</button>
+                <button data-tab="settings" type="button">Configurações</button>
               </div>
             </aside>
 
@@ -1286,15 +1268,15 @@
 
                     <div class="file-grid">
                       <label class="uploader" id="frontBox">
-                        <input type="file" accept="image/*" onchange="previewImage(event,'frontBox')" />
+                        <input type="file" accept="image/*" data-preview-box="frontBox" />
                         <span>Foto frente</span>
                       </label>
                       <label class="uploader" id="sideBox">
-                        <input type="file" accept="image/*" onchange="previewImage(event,'sideBox')" />
+                        <input type="file" accept="image/*" data-preview-box="sideBox" />
                         <span>Foto lado</span>
                       </label>
                       <label class="uploader" id="backBox">
-                        <input type="file" accept="image/*" onchange="previewImage(event,'backBox')" />
+                        <input type="file" accept="image/*" data-preview-box="backBox" />
                         <span>Foto costas</span>
                       </label>
                     </div>
@@ -1308,7 +1290,7 @@
                       <input class="input" placeholder="Ombro (cm)" />
                     </div>
 
-                    <button class="btn btn-primary" style="width:100%" onclick="showToast('Perfil salvo visualmente','Na próxima fase, estes dados irão para banco de dados real.')">Salvar perfil corporal</button>
+                    <button class="btn btn-primary" type="button" style="width:100%" onclick="showToast('Perfil salvo visualmente','Na próxima fase, estes dados irão para banco de dados real.')">Salvar perfil corporal</button>
                   </div>
 
                   <div class="panel">
@@ -1349,8 +1331,8 @@
                     <textarea id="productNotes" class="textarea" rows="5" placeholder="Observações do teste: tecido, modelagem, ocasião, tamanho desejado..."></textarea>
 
                     <div class="hero-actions" style="margin-top:14px">
-                      <button class="btn btn-primary" onclick="generateSimulation()">Gerar simulação</button>
-                      <button class="btn btn-secondary" onclick="fillDemo()">Usar exemplo demo</button>
+                      <button class="btn btn-primary" type="button" onclick="generateSimulation()">Gerar simulação</button>
+                      <button class="btn btn-secondary" type="button" onclick="fillDemo()">Usar exemplo demo</button>
                     </div>
                   </div>
 
@@ -1515,7 +1497,7 @@
             </div>
           </div>
 
-          <button id="generateTryOn" class="btn btn-accent">Gerar Provador Virtual</button>
+          <button id="generateTryOn" class="btn btn-accent" type="button">Gerar Provador Virtual</button>
 
           <div class="result-box">
             <h3>Resultado</h3>
@@ -1586,15 +1568,15 @@
 
         <div class="faq-list">
           <div class="faq-item">
-            <button class="faq-btn">Como o FitSee funciona? <span>+</span></button>
+            <button class="faq-btn" type="button">Como o FitSee funciona? <span>+</span></button>
             <div class="faq-content">O usuário cria seu perfil corporal e testa peças com base em fotos, medidas e links de produtos.</div>
           </div>
           <div class="faq-item">
-            <button class="faq-btn">Isso serve para lojas também? <span>+</span></button>
+            <button class="faq-btn" type="button">Isso serve para lojas também? <span>+</span></button>
             <div class="faq-content">Sim. O modelo evolui naturalmente para sellers, e-commerces e marketplaces.</div>
           </div>
           <div class="faq-item">
-            <button class="faq-btn">A IA já está integrada? <span>+</span></button>
+            <button class="faq-btn" type="button">A IA já está integrada? <span>+</span></button>
             <div class="faq-content">Este site já está preparado para chamar a rota <code>/api/tryon</code>. O resultado depende do retorno real da sua API.</div>
           </div>
         </div>
@@ -1608,8 +1590,8 @@
           O FitSee pode começar como MVP validando desejo real e evoluir para uma plataforma forte de recomendação, conversão e monetização.
         </p>
         <div class="hero-actions" style="justify-content:center">
-          <button class="btn btn-primary" onclick="openModal('register')">Quero acesso beta</button>
-          <button class="btn btn-secondary" onclick="scrollToId('tryon-real')">Testar agora</button>
+          <button class="btn btn-primary" type="button" onclick="openModal('register')">Quero acesso beta</button>
+          <button class="btn btn-secondary" type="button" onclick="scrollToId('tryon-real')">Testar agora</button>
         </div>
       </div>
     </section>
@@ -1629,322 +1611,13 @@
           <div class="subtitle">Acesso</div>
           <h3 id="modalTitle" style="font-size:28px;letter-spacing:-.6px">Entrar</h3>
         </div>
-        <button class="close-btn" onclick="closeModal()">✕</button>
+        <button class="close-btn" type="button" onclick="closeModal()">✕</button>
       </div>
 
       <div class="tabs-inline">
-        <button id="loginSwitch" class="switch active" onclick="switchAuth('login')">Entrar</button>
-        <button id="registerSwitch" class="switch" onclick="switchAuth('register')">Solicitar beta</button>
+        <button id="loginSwitch" class="switch active" type="button" onclick="switchAuth('login')">Entrar</button>
+        <button id="registerSwitch" class="switch" type="button" onclick="switchAuth('register')">Solicitar beta</button>
       </div>
 
-      <form id="loginForm">
-        <input class="input" type="email" placeholder="Seu email" />
-        <input class="input" type="password" placeholder="Sua senha" />
-        <button type="button" class="btn btn-primary" style="width:100%" onclick="fakeSubmit('Login simulado','Fluxo visual concluído com sucesso.')">Entrar</button>
-      </form>
-
-      <form id="registerForm" class="hidden">
-        <input class="input" type="text" placeholder="Seu nome" />
-        <input class="input" type="email" placeholder="Seu email" />
-        <select class="input">
-          <option>Sou comprador</option>
-          <option>Sou loja / seller</option>
-          <option>Sou creator / afiliado</option>
-        </select>
-        <button type="button" class="btn btn-accent" style="width:100%" onclick="fakeSubmit('Solicitação enviada','Seu interesse foi registrado no beta do FitSee AI.')">Enviar solicitação</button>
-      </form>
-    </div>
-  </div>
-
-  <div class="toast" id="toast">
-    <strong id="toastTitle">Pronto</strong>
-    <p id="toastText">Ação executada.</p>
-  </div>
-
-  <script>
-    function scrollToId(id){
-      const el = document.getElementById(id);
-      if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
-    }
-
-    const menuButtons = document.querySelectorAll('#sidebarMenu button');
-    const tabViews = document.querySelectorAll('.tab-view');
-
-    menuButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        menuButtons.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-
-        const target = btn.getAttribute('data-tab');
-        tabViews.forEach(view => view.classList.remove('active'));
-
-        const current = document.getElementById(target);
-        if(current) current.classList.add('active');
-      });
-    });
-
-    function previewImage(event, targetId){
-      const file = event.target.files[0];
-      if(!file) return;
-
-      const reader = new FileReader();
-      reader.onload = function(e){
-        const box = document.getElementById(targetId);
-        box.classList.add('preview');
-        box.style.backgroundImage = "linear-gradient(rgba(0,0,0,.16), rgba(0,0,0,.16)), url('" + e.target.result + "')";
-        box.innerHTML = '<span style="background:rgba(0,0,0,.55);padding:8px 12px;border-radius:999px;color:#fff;font-size:12px;font-weight:700">Imagem carregada</span>';
-      };
-      reader.readAsDataURL(file);
-    }
-
-    function fillDemo(){
-      document.getElementById('productLink').value = 'https://shopee.com.br/produto-demo-premium';
-      document.getElementById('productTitle').value = 'Vestido casual premium preto';
-      document.getElementById('productNotes').value = 'Quero um visual elegante, ajuste natural na cintura e caimento equilibrado.';
-      showToast('Dados demo inseridos','Agora clique em Gerar simulação.');
-    }
-
-    function generateSimulation(){
-      const link = document.getElementById('productLink').value.trim();
-      const title = document.getElementById('productTitle').value.trim();
-      const notes = document.getElementById('productNotes').value.trim();
-      const result = document.getElementById('simulationResult');
-
-      if(!link){
-        result.innerHTML = `
-          <div class="result-card">
-            <div class="avatar">⚠️</div>
-            <div style="font-weight:700;color:rgba(255,255,255,.82);margin-bottom:8px">Cole um link antes de continuar</div>
-            <div style="font-size:14px">Adicione a URL de um produto para visualizar a experiência da simulação.</div>
-          </div>
-        `;
-        showToast('Faltou o link do produto','Cole a URL para gerar a simulação visual.');
-        return;
-      }
-
-      const safeTitle = title || 'Produto sem nome definido';
-      const safeNotes = notes || 'Sem observações adicionais';
-      const domain = extractDomain(link);
-
-      result.innerHTML = `
-        <div class="result-card">
-          <div class="avatar">✨</div>
-          <div style="font-weight:700;color:rgba(255,255,255,.84);margin-bottom:8px">Simulação gerada com sucesso</div>
-          <div style="font-size:14px;color:rgba(255,255,255,.68);margin-bottom:14px">
-            Este é o fluxo premium do MVP. Na próxima etapa, esta área pode receber o resultado real da IA.
-          </div>
-          <div style="border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.04);border-radius:16px;padding:14px;text-align:left">
-            <div style="font-size:12px;color:rgba(255,255,255,.46);margin-bottom:6px">Produto</div>
-            <div style="font-weight:700;margin-bottom:10px">${escapeHtml(safeTitle)}</div>
-
-            <div style="font-size:12px;color:rgba(255,255,255,.46);margin-bottom:6px">Marketplace</div>
-            <div style="margin-bottom:10px">${escapeHtml(domain)}</div>
-
-            <div style="font-size:12px;color:rgba(255,255,255,.46);margin-bottom:6px">Observações</div>
-            <div style="color:rgba(255,255,255,.72)">${escapeHtml(safeNotes)}</div>
-          </div>
-
-          <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px">
-            <button class="btn btn-secondary" onclick="window.open('${link}','_blank')">Abrir produto</button>
-            <button class="btn btn-accent" onclick="showToast('Fluxo afiliado ilustrado','Na fase seguinte, este botão poderá usar seu link de afiliado.')">Comprar agora</button>
-          </div>
-        </div>
-      `;
-
-      showToast('Simulação visual pronta','Fluxo do MVP executado com sucesso.');
-    }
-
-    function extractDomain(url){
-      try{
-        const parsed = new URL(url);
-        return parsed.hostname.replace('www.','');
-      }catch{
-        return 'domínio não identificado';
-      }
-    }
-
-    function escapeHtml(text){
-      return text
-        .replaceAll('&', '&amp;')
-        .replaceAll('<', '&lt;')
-        .replaceAll('>', '&gt;')
-        .replaceAll('"', '&quot;')
-        .replaceAll("'", '&#039;');
-    }
-
-    const faqButtons = document.querySelectorAll('.faq-btn');
-    faqButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const content = btn.nextElementSibling;
-        const symbol = btn.querySelector('span');
-        const opened = content.style.display === 'block';
-
-        document.querySelectorAll('.faq-content').forEach(c => c.style.display = 'none');
-        document.querySelectorAll('.faq-btn span').forEach(s => s.textContent = '+');
-
-        if(!opened){
-          content.style.display = 'block';
-          symbol.textContent = '–';
-        }
-      });
-    });
-
-    function openModal(mode='login'){
-      document.getElementById('modalOverlay').style.display = 'flex';
-      switchAuth(mode);
-    }
-
-    function closeModal(){
-      document.getElementById('modalOverlay').style.display = 'none';
-    }
-
-    function switchAuth(mode){
-      const login = document.getElementById('loginForm');
-      const register = document.getElementById('registerForm');
-      const loginSwitch = document.getElementById('loginSwitch');
-      const registerSwitch = document.getElementById('registerSwitch');
-      const title = document.getElementById('modalTitle');
-
-      if(mode === 'register'){
-        login.classList.add('hidden');
-        register.classList.remove('hidden');
-        loginSwitch.classList.remove('active');
-        registerSwitch.classList.add('active');
-        title.textContent = 'Solicitar acesso beta';
-      } else {
-        register.classList.add('hidden');
-        login.classList.remove('hidden');
-        registerSwitch.classList.remove('active');
-        loginSwitch.classList.add('active');
-        title.textContent = 'Entrar';
-      }
-    }
-
-    function fakeSubmit(title, text){
-      closeModal();
-      showToast(title, text);
-    }
-
-    function showToast(title, text){
-      const toast = document.getElementById('toast');
-      document.getElementById('toastTitle').textContent = title;
-      document.getElementById('toastText').textContent = text;
-      toast.style.display = 'block';
-
-      clearTimeout(window.toastTimer);
-      window.toastTimer = setTimeout(() => {
-        toast.style.display = 'none';
-      }, 3200);
-    }
-
-    window.addEventListener('click', function(e){
-      const overlay = document.getElementById('modalOverlay');
-      if(e.target === overlay) closeModal();
-    });
-
-    function fileToBase64(file){
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = reject;
-        reader.readAsDataURL(file);
-      });
-    }
-
-    window.addEventListener('DOMContentLoaded', function () {
-      const personUpload = document.getElementById('personUpload');
-      const clothUpload = document.getElementById('clothUpload');
-      const personPreview = document.getElementById('personPreview');
-      const clothPreview = document.getElementById('clothPreview');
-      const resultImage = document.getElementById('resultImage');
-      const tryonStatus = document.getElementById('tryonStatus');
-      const generateTryOnBtn = document.getElementById('generateTryOn');
-
-      if (personUpload) {
-        personUpload.addEventListener('change', function () {
-          const file = this.files[0];
-          if (file) {
-            personPreview.src = URL.createObjectURL(file);
-            personPreview.style.display = 'block';
-          }
-        });
-      }
-
-      if (clothUpload) {
-        clothUpload.addEventListener('change', function () {
-          const file = this.files[0];
-          if (file) {
-            clothPreview.src = URL.createObjectURL(file);
-            clothPreview.style.display = 'block';
-          }
-        });
-      }
-
-      if (generateTryOnBtn) {
-        generateTryOnBtn.addEventListener('click', async function () {
-          const personFile = personUpload?.files?.[0];
-          const clothFile = clothUpload?.files?.[0];
-
-          if (!personFile || !clothFile) {
-            tryonStatus.textContent = 'Envie as duas imagens antes de continuar.';
-            showToast('Faltam imagens', 'Selecione a foto da pessoa e a foto da roupa.');
-            return;
-          }
-
-          try {
-            tryonStatus.textContent = 'Processando imagens...';
-            resultImage.style.display = 'none';
-            generateTryOnBtn.disabled = true;
-            generateTryOnBtn.textContent = 'Gerando...';
-
-            const personImage = await fileToBase64(personFile);
-            const garmentImage = await fileToBase64(clothFile);
-
-            const response = await fetch('/api/tryon', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({
-                personImage,
-                garmentImage
-              })
-            });
-
-            const data = await response.json();
-
-            if (!response.ok || data.success === false) {
-              throw new Error(data.error || 'Erro ao gerar provador virtual.');
-            }
-
-            const output =
-              data.output?.resultImage ||
-              data.output?.image ||
-              data.output?.output?.[0] ||
-              data.output?.output ||
-              '';
-
-            if (typeof output === 'string' && output) {
-              resultImage.src = output;
-              resultImage.style.display = 'block';
-              tryonStatus.textContent = 'Provador virtual gerado com sucesso.';
-              showToast('Provador gerado', 'A IA retornou o resultado da simulação.');
-            } else {
-              tryonStatus.textContent = 'A IA respondeu, mas ainda não retornou uma imagem exibível.';
-              showToast('Resposta recebida', 'Agora só falta ajustar o formato exato retornado pela API.');
-              console.log('Resposta da IA:', data);
-            }
-          } catch (error) {
-            console.error(error);
-            tryonStatus.textContent = error.message || 'Erro ao gerar o provador virtual.';
-            showToast('Erro no provador', error.message || 'Não foi possível gerar a simulação.');
-          } finally {
-            generateTryOnBtn.disabled = false;
-            generateTryOnBtn.textContent = 'Gerar Provador Virtual';
-          }
-        });
-      }
-    });
-  </script>
-</body>
-</html>
+      <form id="loginForm" onsubmit="return false;">
+        <input class="input" type="email
