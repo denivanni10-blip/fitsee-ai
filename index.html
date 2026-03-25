@@ -1610,30 +1610,39 @@
       <div class="modal-header">
         <div>
           <div class="subtitle">Acesso</div>
-          <h3 id="modalTitle" style="font-size:28px;letter-spacing:-.6px">Entrar</h3>
-        </div>
-        <button class="close-btn" type="button" onclick="closeModal()">✕</button>
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <div class="subtitle">Acesso</div>
+        <h3 id="modalTitle" style="font-size:28px;letter-spacing:-.6px">Entrar</h3>
       </div>
-
-      <div class="tabs-inline">
-        <button id="loginSwitch" class="switch active" type="button" onclick="switchAuth('login')">Entrar</button>
-        <button id="registerSwitch" class="switch" type="button" onclick="switchAuth('register')">Solicitar beta</button>
-      </div>
-
-      <form id="loginForm" onsubmit="return false;">
-  <input class="input" type="email" placeholder="Seu e-mail" style="margin-bottom:12px" />
-  <input class="input" type="password" placeholder="Sua senha" />
-  <button class="btn btn-primary" style="width:100%;margin-top:16px" onclick="fakeSubmit('Login enviado','Nesta fase, o acesso ainda é apenas visual.')">Entrar na plataforma</button>
-</div>
-
-<div id="registerForm" class="hidden">
-  <input class="input" type="text" placeholder="Seu nome" style="margin-bottom:12px" />
-  <input class="input" type="email" placeholder="Seu e-mail" style="margin-bottom:12px" />
-  <input class="input" type="text" placeholder="Você é usuário, seller ou loja?" />
-  <button class="btn btn-accent" style="width:100%;margin-top:16px" onclick="fakeSubmit('Cadastro enviado','Lead captado visualmente para a próxima versão.')">Solicitar acesso beta</button>
-</div>
+      <button class="close-btn" type="button" onclick="closeModal()">✕</button>
     </div>
+
+    <div class="tabs-inline">
+      <button id="loginSwitch" class="switch active" type="button" onclick="switchAuth('login')">Entrar</button>
+      <button id="registerSwitch" class="switch" type="button" onclick="switchAuth('register')">Solicitar beta</button>
+    </div>
+
+    <form id="loginForm" onsubmit="return false;">
+      <input class="input" type="email" placeholder="Seu e-mail" />
+      <input class="input" type="password" placeholder="Sua senha" />
+      <button class="btn btn-primary" type="button" style="width:100%;margin-top:16px" onclick="fakeSubmit('Login enviado','Nesta fase, o acesso ainda é apenas visual.')">
+        Entrar na plataforma
+      </button>
+    </form>
+
+    <form id="registerForm" class="hidden" onsubmit="return false;">
+      <input class="input" type="text" placeholder="Seu nome" />
+      <input class="input" type="email" placeholder="Seu e-mail" />
+      <input class="input" type="text" placeholder="Você é usuário, seller ou loja?" />
+      <button class="btn btn-accent" type="button" style="width:100%;margin-top:16px" onclick="fakeSubmit('Cadastro enviado','Lead captado visualmente para a próxima versão.')">
+        Solicitar acesso beta
+      </button>
+    </form>
   </div>
+</div>
 
   <div class="toast" id="toast">
     <strong id="toastTitle">Tudo certo</strong>
