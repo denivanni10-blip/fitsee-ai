@@ -41,12 +41,15 @@ if (!prediction.urls || !prediction.urls.get) {
 
 const pollUrl = prediction.urls.get;
 let result = prediction;
+let attempts = 0;
 
 while (
   result.status !== "succeeded" &&
-  result.status !== "failed"
+  result.status !== "failed" &&
+  attempts < 30
 ) {
   await new Promise(r => setTimeout(r, 2000));
+  attempts++;
 
   const poll = await fetch(pollUrl, {
     headers: {
