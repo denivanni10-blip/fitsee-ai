@@ -39,6 +39,7 @@ if (!prediction.urls || !prediction.urls.get) {
   });
 }
 
+const pollUrl = prediction.urls.get;
 let result = prediction;
 
 while (
@@ -47,7 +48,7 @@ while (
 ) {
   await new Promise(r => setTimeout(r, 2000));
 
-  const poll = await fetch(result.urls.get, {
+  const poll = await fetch(pollUrl, {
     headers: {
       "Authorization": `Token ${process.env.REPLICATE_API_TOKEN}`
     }
@@ -55,7 +56,6 @@ while (
 
   result = await poll.json();
 }
-
     if (result.status === "succeeded") {
       return res.status(200).json({
         output: result.output
