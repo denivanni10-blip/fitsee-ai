@@ -5,8 +5,16 @@ module.exports = async function handler(req, res) {
   }
 
   try {
+    let body = req.body;
 
-    const { personImage, garmentImage } = req.body;
+if (!body) {
+  body = await new Promise((resolve) => {
+    let data = "";
+    req.on("data", chunk => data += chunk);
+    req.on("end", () => resolve(JSON.parse(data || "{}")));
+  });
+}
+const { personImage, garmentImage } = body;
 
     const createPrediction = await fetch("https://api.replicate.com/v1/predictions", {
       method: "POST",
